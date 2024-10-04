@@ -9,7 +9,7 @@ type queryOptions<'queryKey, 'queryData, 'queryError, 'pageParam> = {
   retryDelay?: ReactQuery_Types.retryDelayValue<'queryError>,
   staleTime?: ReactQuery_Types.timeValue,
   queryKeyHashFn?: array<'queryKey> => string,
-  refetchInterval?: ReactQuery_Types.refetchIntervalValue,
+  refetchInterval?: 'queryData => ReactQuery_Types.refetchIntervalValue,
   refetchIntervalInBackground?: bool,
   refetchOnMount?: ReactQuery_Types.boolOrAlwaysValue,
   refetchOnWindowFocus?: ReactQuery_Types.boolOrAlwaysValue,
