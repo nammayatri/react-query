@@ -56,7 +56,11 @@ type queryObserverOptions<'error, 'data, 'queryData, 'queryKey, 'pageParam> = {
   _defaulted?: bool,
   enabled?: bool,
   staleTime?: int,
-  refetchInterval?: 'queryData => ReactQuery_Types.refetchIntervalValue,
+  refetchInterval?: ReactQuery_Types.queryType<
+    'queryKey,
+    'queryData,
+    'error,
+  > => ReactQuery_Types.refetchIntervalValue,
   refetchIntervalInBackground?: bool,
   refetchOnWindowFocus?: ReactQuery_Types.boolOrAlwaysValue,
   refetchOnReconnect?: ReactQuery_Types.boolOrAlwaysValue,
