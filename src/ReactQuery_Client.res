@@ -176,13 +176,32 @@ type queryClient<'queryKey, 'queryData, 'queryError, 'pageParams> = {
   clear: unit => unit,
 }
 
+type onError = unit => unit;
+
+module QueryCache = {
+  type t
+  @new @module("@tanstack/react-query")
+  external make: onError => t = "QueryCache"
+}
+
+module MutationCache = {
+  type t
+  @new @module("@tanstack/react-query")
+  external make: onError => t = "MutationCache"
+}
+
+type defaultOptionsLimited = 
+  { queryCache:option<QueryCache.t>, 
+    mutationCache:option<MutationCache.t>
+  }
+
 @module("@tanstack/react-query")
 external useQueryClient: unit => queryClient<'queryKey, 'queryData, 'queryError, 'pageParams> =
   "useQueryClient"
 
 module Provider = {
   @new @module("@tanstack/react-query")
-  external createClient: unit => queryClientValue = "QueryClient"
+  external createClient: defaultOptionsLimited => queryClientValue = "QueryClient"
 
   @module("@tanstack/react-query") @react.component
   external make: (
